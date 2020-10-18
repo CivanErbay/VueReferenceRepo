@@ -8,7 +8,20 @@
   <!--     v-html usecase could be when you receive Raw HTML from backend - you can display it the right away
  -->
   <p align="center" v-html="rawHTML"></p>
-  <p align="center">{{rawHTML}}</p>
+  <p align="center">{{ rawHTML }}</p>
+
+  <ul align="center">
+    <li v-for="(lang, index) in programmingLangs" :key="lang.name">
+      {{ index + 1 }} - {{ lang.name }}
+    </li>
+  </ul>
+
+  <!-- WORKS ALSO FOR ITERATION THROUGH OBJECTS NOT ONLY ARRAYS -->
+  <ul align="center">
+    <li v-for="object in outerObject" v-bind:key="object">
+      {{ object }}
+    </li>
+  </ul>
 </template>
 
 
@@ -17,23 +30,23 @@ export default {
   //Data is a functiom
   data() {
     return {
-      rawHTML: "<b>Ich bin hier unten</b>",
       myName: "Civan Erbay",
-      district: "Ehrenfeld",
+      rawHTML: "<b>Ich bin hier unten</b>",
+      programmingLangs: [
+        { name: "JavaScript" },
+        { name: "C" },
+        { name: "C++" },
+        { name: "Java" },
+      ],
+      outerObject: {
+        innerObject1: "Object1",
+        innerObject2: "Object2",
+      },
     };
   },
   //Methods is just a simple plain Object, because we define the methods inside of this objects - Those will be functions
-  methods: {
-    something(a) {
-      let result = 0;
-      for (let i = 0; i < a.length; i++) {
-        result = result + a[i];
-      }
-      return result;
-    },
-  },
+  methods: {},
   mounted() {
-    console.log(this.something([1, 3, 4, 5, 6]));
     this.myName = "Random";
   },
 };
