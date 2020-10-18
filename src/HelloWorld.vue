@@ -1,13 +1,27 @@
 <template>
   <h1>Speed Typer</h1>
 
-<!--     Very Interesting Filter Method to get the Number of the Correct Values -> by filtering out an Array of only Correct Answers
+  <!--     Very Interesting Filter Method to get the Number of the Correct Values -> by filtering out an Array of only Correct Answers
  -->
-  <p> Your Score: {{keywords.filter(keyword => 
-    keyword.correct).length }} / {{keywords.length}} </p>
-  <p> 
-<!--     :class Condition is defined by the truthy Value of the object depending on the keyword. By default for example all every keyword has a class="pending"
- -->    <span :class="{ correct: keyword.correct, wrong: keyword.wrong, pending: keyword.pending}" v-for="keyword in keywords" :key="keyword">
+
+  <!--  ADD TASk: ADD a Timer - after its done freeze the Input
+ -->
+  <p>
+    Your Score: {{ keywords.filter((keyword) => keyword.correct).length }} /
+    {{ keywords.length }}
+  </p>
+  <p>
+    <!--     :class Condition is defined by the truthy Value of the object depending on the keyword. By default for example all every keyword has a class="pending"
+ -->
+    <span
+      :class="{
+        correct: keyword.correct,
+        wrong: keyword.wrong,
+        pending: keyword.pending,
+      }"
+      v-for="keyword in keywords"
+      :key="keyword"
+    >
       {{ keyword.text }} {{ " " }}
     </span>
 
