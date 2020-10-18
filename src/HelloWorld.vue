@@ -1,6 +1,14 @@
 <template>
-  <h1>Hello World</h1>
- 
+  <h1 align="center">Hello World</h1>
+  <!--   Because of v-once the h3 is only updated One Time in the Moment it gets rendered
+ -->
+  <h3 align="center" v-once>{{ myName }}</h3>
+  <h3 align="center">{{ myName }}</h3>
+
+  <!--     v-html usecase could be when you receive Raw HTML from backend - you can display it the right away
+ -->
+  <p align="center" v-html="rawHTML"></p>
+  <p align="center">{{rawHTML}}</p>
 </template>
 
 
@@ -9,6 +17,7 @@ export default {
   //Data is a functiom
   data() {
     return {
+      rawHTML: "<b>Ich bin hier unten</b>",
       myName: "Civan Erbay",
       district: "Ehrenfeld",
     };
@@ -24,7 +33,8 @@ export default {
     },
   },
   mounted() {
-      console.log(this.something([1,3,4,5,6]))
+    console.log(this.something([1, 3, 4, 5, 6]));
+    this.myName = "Random";
   },
 };
 </script>
