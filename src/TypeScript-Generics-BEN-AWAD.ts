@@ -34,3 +34,4 @@ const lGeneric = lastGeneric([1,2,3])
 
 //ALSO working
 const lGeneric2 = lastGeneric(["1","2","3"])
+
