@@ -1,23 +1,13 @@
 <template>
-  <h1>Hello World</h1>
-  <p>My Name is {{ myName }} and I live in {{ district }}</p>
-  <div class="secondary">
-    <input :value="newHero" />
-    <input :[attribute]="exampleHero" />
-  </div>
+  <div align="center">
+    <h1>Hello World</h1>
+    <button @click="a++">Add to Variable "a"</button>
+    <button @click="b++">Add to variable "b"</button>
 
-  <!-- v-model.trim removes whitespace!! -->
-  <!--   <input v-model.lazy="newHero" type="text">  v-model.lazy is only going to update newHero as soon as you loose focus of the input field!! 
-  <input v-model.number="newHero" type="text">  v-model.number if you enter a number like "2" its an Integer Value - if you type a string its still a string! -->
-  <div style="margin-top: 2em" align="center">
-    <input v-model.trim="newHero" type="text" />
-    <div>{{ heroList.length }}</div>
-    <div>{{ isDisabled }}</div>
-    <button @click="addHero" :disabled="isDisabled">Add Hero</button>
-
-    <div>
-      <h4 v-for="hero in heroList" :key="hero">{{ hero }}</h4>
-    </div>
+    <h3>{{ a }}</h3>
+    <h3>{{ b }}</h3>
+    <h2>Age + A: {{ addToA() }}</h2>
+    <h2>Age + B: {{ addToB() }}</h2>
   </div>
 </template>
 
@@ -26,26 +16,18 @@
 export default {
   data() {
     return {
-      attribute: "value", //DYNAMIC ATTRIBUTE
-      isDisabled: false,
-      exampleHero: "A-train",
-      newHero: "",
-      heroList: [],
-      myName: "Civan Erbay",
-      district: "Ehrenfeld",
+      age: 20,
+      a: 0,
+      b: 0,
     };
   },
+  //Example with Methods - Problem: Both Update as soon as only ONE changes - not very performant
   methods: {
-    addHero() {
-      this.heroList.push(this.newHero);
+    addToA: function () {
+      return this.a + this.age;
     },
-  },
-  watch: {
-    "heroList.length"() {       //Perfect Example to TRACK the length 
-      console.log(this.heroList.length)
-      if (this.heroList.length > 5) {
-        this.isDisabled = true;
-      }
+    addToB: function () {
+      return this.b + this.age;
     },
   },
 };
